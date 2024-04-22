@@ -10,7 +10,9 @@ dotenv.config({ path: './config/config.env' });
 
 connectDB();
 
-const tasks = require('./routes/tasks.routes');
+const tasks = require('./routes/task.routes');
+
+const users = require('./routes/user.routes');
 
 app.use(bodyParser.json());
 
@@ -21,6 +23,8 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
+
+app.use('/users', users);
 
 app.use('/tasks', tasks);
 
