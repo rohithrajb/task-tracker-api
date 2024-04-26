@@ -3,11 +3,11 @@ const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const connectDB = require('./config/db');
+const connectDB = require('./mongoose');
 
 const app = express();
 
-dotenv.config({ path: './config/config.env' });
+dotenv.config({ path: './.env' });
 
 connectDB();
 
@@ -17,15 +17,8 @@ const users = require('./routes/user.routes');
 
 app.use(bodyParser.json());
 
-app.use(cors());
-
 // CORS HEADERS MIDDLEWARE
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Methods", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
+app.use(cors());
 
 // USER ROUTES
 app.use('/users', users);
